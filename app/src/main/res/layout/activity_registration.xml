@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mis571_group_d.suchef.activity.LoginActivity">
+    tools:context="com.mis571_group_d.suchef.activity.RegistrationActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -48,15 +48,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/repassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_repassword"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
@@ -67,17 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/registration_link"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
                 android:text="@string/action_registration"
-            />
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
