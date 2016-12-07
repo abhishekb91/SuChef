@@ -5,7 +5,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.mis571_group_d.suchef.app.App;
+import com.mis571_group_d.suchef.data.model.Ingredient;
 import com.mis571_group_d.suchef.data.model.User;
+import com.mis571_group_d.suchef.data.repo.IngredientRepo;
+import com.mis571_group_d.suchef.data.repo.SampleData;
 import com.mis571_group_d.suchef.data.repo.UserRepo;
 
 /**
@@ -30,6 +33,11 @@ public class DBHelper  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //All necessary tables you like to create will create here
         db.execSQL(UserRepo.createTable());
+        db.execSQL(IngredientRepo.createTable());
+
+        //Inserting sample data into application
+        db.execSQL(SampleData.ingredients());
+        db.execSQL(SampleData.users());
     }
 
     @Override
@@ -38,6 +46,7 @@ public class DBHelper  extends SQLiteOpenHelper {
 
         // Drop table if existed, all data will be gone!!!
         db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + Ingredient.TABLE);
         onCreate(db);
     }
 
