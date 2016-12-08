@@ -47,4 +47,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_recipe_list">Recipe list</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="cuisine_name">Cuisine Name</string>
+    <string name="recipe_description">Recipe Description</string>
 </resources>
