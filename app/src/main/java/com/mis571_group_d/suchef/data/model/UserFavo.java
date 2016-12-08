@@ -41,13 +41,21 @@ public class UserFavo {
         mUserId = user_id;
     }
 
-    public long getRecipeID() { return mRecipeID; }
+    public long getRecipeID() {
+        return mRecipeID;
+    }
 
-    public void setRecipeID(long recipeID) { mRecipeID = recipeID;}
+    public void setRecipeID(long recipeID) {
+        mRecipeID = recipeID;
+    }
 
-    public Date getAddedDate() { return mAddedDate; }
+    public Date getAddedDate() {
+        return mAddedDate;
+    }
 
-    public void setAddedDate(Date addedDate) { mAddedDate = addedDate; }
+    public void setAddedDate(Date addedDate) {
+        mAddedDate = addedDate;
+    }
 
 }
 
