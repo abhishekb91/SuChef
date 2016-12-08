@@ -16,7 +16,7 @@ public class Cuisines {
      *
      */
     public static final String KEY_CUISINESID   = "cuisines_id";
-    public static final String KEY_CUISINESName = "name";
+    public static final String KEY_CUISINESNAME = "name";
     public static final String KEY_IS_DELETE    = "is_delete";
 
     /**

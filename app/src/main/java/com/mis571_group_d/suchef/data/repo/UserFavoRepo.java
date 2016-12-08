@@ -1,12 +1,5 @@
 package com.mis571_group_d.suchef.data.repo;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
-import com.mis571_group_d.suchef.data.DatabaseManager;
-import com.mis571_group_d.suchef.data.model.User;
 import com.mis571_group_d.suchef.data.model.UserFavo;
 
 /**
