@@ -52,6 +52,16 @@
     <string name="mix_search_button">Search</string>
     <string name="mix_search_match_all_ingredients">Search Recipe that match Ingredients</string>
 
+
+    <!-- Strings related to Recipe Detail -->
+    <string name="ingredients">Ingredients</string>
+    <string name="methods">Methods</string>
+
+    <!-- Strings related to Search Page-->
+    <string name="title_activity_recipe_detail">Recipe Detail</string>
+
+    <!-- Strings related to Search Page-->
+    <string name="title_activity_search">Search Result</string>
     <string name="title_recipe_list">Recipe list</string>
     <string name="recipe_name">Recipe Name</string>
     <string name="cuisine_name">Cuisine Name</string>

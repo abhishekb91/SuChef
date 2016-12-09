@@ -1,7 +1,9 @@
 package com.mis571_group_d.suchef.activity;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -84,10 +86,39 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 session.createLoginSession(userId);
 
-                // Staring HomeActivity
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-                finish();
+                //Showing Dummy Spinner
+                final ProgressDialog dialog = new ProgressDialog(RegistrationActivity.this);
+
+                // Set progress dialog style spinner
+                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+                // Set the progress dialog title and message
+                dialog.setTitle(R.string.app_name);
+                dialog.setMessage("Creating new account...");
+
+                dialog.show();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                        dialog.dismiss();
+
+                        // Staring HomeActivity
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+
+                        // Closing all the Activities
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                        // Add new Flag to start new Activity
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        // Staring Login Activity
+                        startActivity(i);
+
+                        finish();
+                    }
+                }, 3000);
 
             } else {
                 Toast.makeText(this, getString(R.string.error_invalid_credentials), Toast.LENGTH_SHORT).show();
