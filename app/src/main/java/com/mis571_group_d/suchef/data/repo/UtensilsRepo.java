@@ -24,4 +24,3 @@ public class UtensilsRepo {
         return query;
     }
 }
-//url=ssh://git@github.com/abhishekb91/SuChef.git
