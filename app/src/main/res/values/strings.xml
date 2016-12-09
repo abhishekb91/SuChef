@@ -47,6 +47,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Strings related to Mix and Match Activity -->
+    <string name="mix_search_button">Search</string>
+    <string name="mix_search_match_all_ingredients">Search Recipe that match Ingredients</string>
+
     <string name="title_recipe_list">Recipe list</string>
     <string name="recipe_name">Recipe Name</string>
     <string name="cuisine_name">Cuisine Name</string>
