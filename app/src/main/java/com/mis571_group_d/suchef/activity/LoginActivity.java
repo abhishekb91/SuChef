@@ -1,6 +1,8 @@
 package com.mis571_group_d.suchef.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -114,18 +116,38 @@ public class LoginActivity extends AppCompatActivity {
 
                 session.createLoginSession(userId);
 
-                // Staring HomeActivity
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                //Showing Dummy Spinner
+                final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
 
-                // Closing all the Activities
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                // Set progress dialog style spinner
+                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-                // Add new Flag to start new Activity
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                // Set the progress dialog title and message
+                dialog.setTitle(R.string.app_name);
+                dialog.setMessage("Signing in...");
 
-                startActivity(i);
+                dialog.show();
 
-                finish();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+
+                        dialog.dismiss();
+
+                        // Staring HomeActivity
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+
+                        // Closing all the Activities
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                        // Add new Flag to start new Activity
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(i);
+
+                        finish();
+                    }
+                }, 3000);
 
             } else {
                 Toast.makeText(this, getString(R.string.error_invalid_credentials), Toast.LENGTH_SHORT).show();

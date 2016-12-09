@@ -56,4 +56,10 @@
     <!-- Strings related to Recipe Detail -->
     <string name="ingredients">Ingredients</string>
     <string name="methods">Methods</string>
+
+    <!-- Strings related to Search Page-->
+    <string name="title_activity_recipe_detail">Recipe Detail</string>
+
+    <!-- Strings related to Search Page-->
+    <string name="title_activity_search">Search Result</string>
 </resources>

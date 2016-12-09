@@ -1,5 +1,6 @@
 package com.mis571_group_d.suchef.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -156,20 +157,16 @@ public class MainActivity extends AppCompatActivity {
         switch (navItemIndex) {
             case 0:
                 // home fragment
-                HomeFragment homeFragment = new HomeFragment();
-                return homeFragment;
+                return new HomeFragment();
             case 1:
                 // favourite fragment
-                FavouriteFragment favouriteFragment = new FavouriteFragment();
-                return favouriteFragment;
+                return new FavouriteFragment();
             case 2:
                 // mix n match fragment
-                MixNMatchFragment mixNMatchFragment = new MixNMatchFragment();
-                return mixNMatchFragment;
+                return new MixNMatchFragment();
             case 3:
                 // profile fragment
-                ProfileFragment profileFragment = new ProfileFragment();
-                return profileFragment;
+                return new ProfileFragment();
             default:
                 return new HomeFragment();
         }
@@ -215,19 +212,39 @@ public class MainActivity extends AppCompatActivity {
                         //Clearing Shared Preference values
                         session.logoutUser();
 
-                        // After logout redirect user to Login Activity
-                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        //Showing Dummy Spinner
+                        final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
 
-                        // Closing all the Activities
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        // Set progress dialog style spinner
+                        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-                        // Add new Flag to start new Activity
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        // Set the progress dialog title and message
+                        dialog.setTitle(R.string.app_name);
+                        dialog.setMessage("Logging out...");
 
-                        // Staring Login Activity
-                        startActivity(i);
+                        dialog.show();
 
-                        finish();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+
+                                dialog.dismiss();
+
+                                // After logout redirect user to Login Activity
+                                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+
+                                // Closing all the Activities
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                                // Add new Flag to start new Activity
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                // Staring Login Activity
+                                startActivity(i);
+
+                                finish();
+                            }
+                        }, 3000);
 
                         break;
                     default:
