@@ -62,4 +62,8 @@
 
     <!-- Strings related to Search Page-->
     <string name="title_activity_search">Search Result</string>
+    <string name="title_recipe_list">Recipe list</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="cuisine_name">Cuisine Name</string>
+    <string name="recipe_description">Recipe Description</string>
 </resources>
