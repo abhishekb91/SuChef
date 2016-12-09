@@ -25,10 +25,19 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient>{
 
     private Context mContext;
 
+    private ArrayList<Ingredient> mIngredients;
+
     public IngredientAdapter(Activity context, ArrayList<Ingredient> ingredient) {
         super(context, 0, ingredient);
 
         mContext = context;
+
+        mIngredients = ingredient;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return mIngredients.get(position).getId();
     }
 
     @NonNull

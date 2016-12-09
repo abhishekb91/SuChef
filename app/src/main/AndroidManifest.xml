@@ -23,12 +23,14 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/action_sign_in_short"></activity>
+            android:label="@string/action_sign_in_short"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RegistrationActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_registration" />
+            android:label="@string/title_activity_registration"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.RecipeActivity" />
+        <activity android:name=".activity.SearchResultActivity"></activity>
     </application>
 
 </manifest>
