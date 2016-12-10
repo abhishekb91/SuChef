@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mis571_group_d.suchef.R;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
  */
 
 public class RecipeAdaptor extends ArrayAdapter<Recipe> {
+
     private Context mContext;
 
     private ArrayList<Recipe> mRecipes;
@@ -52,11 +54,17 @@ public class RecipeAdaptor extends ArrayAdapter<Recipe> {
         //Get current reference ingredient
         Recipe currentRecipe = getItem(position);
 
+        //Assigning Recipe name
         TextView recipeName = (TextView) listRecipeView.findViewById(R.id.recipe_name);
         recipeName.setText(currentRecipe.getRecipeName());
 
-        Button favouriteBtn = (Button) listRecipeView.findViewById(R.id.recipe_favourite);
-        favouriteBtn.setText("FAV");
+        //Getting the image of recipe from database
+        int resourceId = mContext.getResources().getIdentifier("drawable/"+ currentRecipe.getRecipeImage(), null, mContext.getPackageName());
+
+        //Assigning Recipe Image
+        ImageView recipeImage = (ImageView) listRecipeView.findViewById(R.id.recipe_image);
+        recipeImage.setImageResource(resourceId);
+
 
         return listRecipeView;
     }

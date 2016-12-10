@@ -107,12 +107,12 @@ public class Recipe {
         mPreparationMethod = preparationMethod;
     }
 
-    public String getIngredientImage() {
+    public String getRecipeImage() {
         return mImage;
     }
 
-    public void setIngredientImage(String ingredientName) {
-        mImage = ingredientName;
+    public void setRecipeImage(String recipeImage) {
+        mImage = recipeImage;
     }
 
     public Boolean getIsDelete() {

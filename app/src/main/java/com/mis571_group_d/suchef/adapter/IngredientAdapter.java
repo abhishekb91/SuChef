@@ -61,7 +61,6 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient>{
 
         //Getting image's resource id
         int resourceId = mContext.getResources().getIdentifier("drawable/"+ currentIngredient.getIngredientImage(), null, mContext.getPackageName());
-        int butter = R.drawable.butter;
 
         //Setting the image to the grid
         ImageView imageView = (ImageView) listIngredientView.findViewById(R.id.ingredient_image);
