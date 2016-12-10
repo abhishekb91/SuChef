@@ -21,7 +21,7 @@ public class User {
      * Table Columns names
      *
      */
-    public static final String KEY_USERID       = "user_id";
+       public static final String KEY_USERID       = "user_id";
     public static final String KEY_USERNAME     = "username";
     public static final String KEY_PASSWORD     = "password";
     public static final String KEY_GENDER       = "gender";
@@ -75,6 +75,10 @@ public class User {
     public String getDob() {
         return mDob;
     }
+
+    public int getGender() { return mGender;}
+
+    public void setGender(int gender) { mGender = gender;}
 
     public Boolean getIsDelete() {
         return mIsDelete;

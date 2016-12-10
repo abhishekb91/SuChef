@@ -10,6 +10,7 @@
     <string name="action_sign_in">Sign in</string>
     <string name="action_registration">Register</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="error_field_incorrect">This reconfirmed password is not correct</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -33,7 +34,7 @@
     <string name="nav_home">Home</string>
     <string name="nav_favourite">Favourite</string>
     <string name="nav_mixnmatch">Mix &amp; Match</string>
-    <string name="nav_profile">Profile</string>
+    <string name="nav_profile">Settings</string>
     <string name="nav_logout">Logout</string>
 
     <!-- Toolbar titles when navigation menu item is selected -->
@@ -41,7 +42,7 @@
         <item>Home</item>
         <item>Favourite</item>
         <item>Mix &amp; Match</item>
-        <item>Profile</item>
+        <item>Settings</item>
     </string-array>
 
 
@@ -51,6 +52,13 @@
     <!-- Strings related to Mix and Match Activity -->
     <string name="mix_search_button">Search</string>
     <string name="mix_search_match_all_ingredients">Search Recipe that match Ingredients</string>
+    <!-- Strings related to settings_profile-->
+    <string name="gender">Gender</string>
+    <string name="date_of_birth">Date_of_Birth</string>
+    <string name="update_btn">Update</string>
+    <string name="date">Date</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 
 
     <!-- Strings related to Recipe Detail -->

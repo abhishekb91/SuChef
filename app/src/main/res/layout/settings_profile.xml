@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mis571_group_d.suchef.fragment.SettingsFragment">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow
+            android:id="@+id/update_profile">
+                <TextView
+                    android:id="@+id/text_update_profile"
+                    android:text="Update Profile"
+                    android:textSize="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#000" />
+
+        <TableRow
+            android:id="@+id/update_password">
+            <TextView
+                android:id="@+id/text_update_password"
+                android:text="Update Password"
+                android:textSize="25dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                />
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#000" />
+
+    </TableLayout>
+</LinearLayout>

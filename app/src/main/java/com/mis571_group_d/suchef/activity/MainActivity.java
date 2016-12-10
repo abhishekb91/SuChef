@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -19,12 +18,14 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mis571_group_d.suchef.data.model.User;
+import com.mis571_group_d.suchef.data.repo.UserRepo;
 import com.mis571_group_d.suchef.fragment.FavouriteFragment;
 import com.mis571_group_d.suchef.R;
 import com.mis571_group_d.suchef.data.SessionManager;
 import com.mis571_group_d.suchef.fragment.HomeFragment;
 import com.mis571_group_d.suchef.fragment.MixNMatchFragment;
-import com.mis571_group_d.suchef.fragment.ProfileFragment;
+import com.mis571_group_d.suchef.fragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
             loadHomeFragment();
         }
 
+
+        UserRepo userRepo = new UserRepo();
+        userRepo.getUserDetails();
     }
 
 
@@ -166,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 return new MixNMatchFragment();
             case 3:
                 // profile fragment
-                return new ProfileFragment();
+                return new SettingsFragment();
             default:
                 return new HomeFragment();
         }
