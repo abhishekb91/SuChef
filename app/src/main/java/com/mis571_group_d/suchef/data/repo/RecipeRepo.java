@@ -37,6 +37,25 @@ public class RecipeRepo {
     }
 
     /**
+     * Recipe Materials query
+     *
+     * @return create table query
+     */
+    public static String recipeMaterials() {
+        String query = "CREATE TABLE `" + Recipe.RECIPE_MATERIALS_TABLE + "` (" +
+                "`" + Recipe.KEY_RECIPE_ID + "` INTEGER, " +
+                "`" + Recipe.KEY_MATERIAL_ID + "` INTEGER, " +
+                "`" + Recipe.KEY_AMOUNT + "` INTEGER, " +
+                "`" + Recipe.KEY_UNIT + "` INTEGER, " +
+                "`" + Recipe.KEY_TYPE + "` INT(1) " +
+                /*"PRIMARY KEY(`recipe_id`,`material_id`),\n" +
+                "FOREIGN KEY(`recipe_id`) REFERENCES recipes(recipe_id)\n" +*/
+                ");";
+
+        return query;
+    }
+
+    /**
      * Function for recipe details
      *
      * @param recipeId is the id of recipe

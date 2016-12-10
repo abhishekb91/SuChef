@@ -29,6 +29,21 @@ public class Recipe {
     public static final String KEY_IS_DELETE = "is_delete";
 
     /**
+     * Material Table Name
+     *
+     */
+    public static final String RECIPE_MATERIALS_TABLE = "recipe_materials";
+
+    /**
+     * Table Columns names
+     *
+     */
+    public static final String KEY_MATERIAL_ID = "material_id";
+    public static final String KEY_AMOUNT = "amount";
+    public static final String KEY_UNIT = "unit";
+    public static final String KEY_TYPE = "type";
+
+    /**
      * Defining Class Attributes
      *
      */
@@ -37,6 +52,7 @@ public class Recipe {
     private String mRecipeName;
     private String mPreparationMethod;
     private String mImage;
+    private Boolean mUserFavourite;
     private Boolean mIsDelete;
 
 
@@ -44,6 +60,13 @@ public class Recipe {
      * Constructor
      */
     public Recipe() {
+    }
+
+    public Recipe(long id, String name, String image, Boolean isUserFavourite) {
+        mId = id;
+        mRecipeName = name;
+        mImage = image;
+        mUserFavourite = isUserFavourite;
     }
 
 
@@ -68,9 +91,12 @@ public class Recipe {
         mCuisineId = cuisineId;
     }
 
-
     public void setName(String name) {
         mRecipeName = name;
+    }
+
+    public String getRecipeName() {
+        return mRecipeName;
     }
 
     public String getPreparationMethod() {
@@ -92,4 +118,8 @@ public class Recipe {
     public Boolean getIsDelete() {
         return mIsDelete;
     }
+
+    public void setUserFavourite(Boolean userFavourite) { mUserFavourite = userFavourite; }
+
+    public Boolean isUserFavourite() { return  mUserFavourite; }
 }

@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
+    tools:context="com.mis571_group_d.suchef.fragment.MixNMatchFragment"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,6 +43,5 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="3"
-        tools:context="com.mis571_group_d.suchef.fragment.MixNMatchFragment"/>
+        android:numColumns="3" />
 </LinearLayout>

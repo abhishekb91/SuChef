@@ -68,7 +68,7 @@ public class MixNMatchFragment extends Fragment {
             }
         });
 
-        //Assigning the grid view to the adapter
+        //Assigning the adaptor to the grid view
         gridView.setAdapter(ingredientAdapter);
 
         //setting the onClick event

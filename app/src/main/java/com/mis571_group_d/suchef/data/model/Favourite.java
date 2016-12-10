@@ -6,19 +6,19 @@ import java.util.Date;
  * Created by rogelio on 12/7/16.
  */
 
-public class UserFavo {
+public class Favourite {
 
     /**
      */
-    public static final String TABLE = "user_favorite";
+    public static final String TABLE = "user_favourites";
 
     /**
      * Table Columns names
      *
      */
-    public static final String KEY_USERID       = "user_id";
-    public static final String KEY_RECIPEID     = "recipe_id";
-    public static final String KEY_ADDEDDATE     = "added_date";
+    public static final String KEY_USER_ID       = "user_id";
+    public static final String KEY_RECIPE_ID     = "recipe_id";
+    public static final String KEY_ADDED_DATE    = "added_date";
 
     /**
      * Defining Class Attributes
