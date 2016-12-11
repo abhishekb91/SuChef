@@ -20,10 +20,10 @@ public class Ingredient {
      * Table Columns names
      *
      */
-    public static final String KEY_INGREDIENTID = "ingredient_id";
+    public static final String KEY_INGREDIENT_ID = "ingredient_id";
     public static final String KEY_NAME = "name";
     public static final String KEY_CALORIE = "calorie";
-    public static final String KEY_PROTIEN = "protein";
+    public static final String KEY_PROTEIN = "protein";
     public static final String KEY_CARBOHYDRATE = "carbohydrate";
     public static final String KEY_FAT = "fat";
     public static final String KEY_IMAGE = "image";
@@ -36,7 +36,7 @@ public class Ingredient {
     private long mId ;
     private String mIngredientsName;
     private float mCalorie;
-    private float mProtien ;
+    private float mProtein;
     private float mCarbohydrate;
     private float mFat;
     private String mImage;
@@ -86,11 +86,11 @@ public class Ingredient {
     }
 
     public void setProtien(float protien) {
-        mProtien = protien;
+        mProtein = protien;
     }
 
     public float getProtien() {
-        return mProtien;
+        return mProtein;
     }
 
     public void setCarbohydrate(float carbohydrate) {

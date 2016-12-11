@@ -33,11 +33,11 @@ public class UserRepo {
     public static String createTable() {
         String query = "CREATE TABLE " + User.TABLE + "("
                 + User.KEY_USERID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + User.KEY_USERNAME + " VARCHAR(100) NOT NULL,"
-                + User.KEY_PASSWORD + " VARCHAR(100) NOT NULL,"
-                + User.KEY_GENDER + " CHAR(1),"
+                + User.KEY_USERNAME + " TEXT NOT NULL,"
+                + User.KEY_PASSWORD + " TEXT NOT NULL,"
+                + User.KEY_GENDER + " TEXT,"
                 + User.KEY_DOB + " DATE,"
-                + User.KEY_IS_DELETE + " INT(1) DEFAULT 0 ); ";
+                + User.KEY_IS_DELETE + " INTEGER DEFAULT 0 ); ";
 
         return query;
     }

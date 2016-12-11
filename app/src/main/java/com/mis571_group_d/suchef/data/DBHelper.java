@@ -7,11 +7,13 @@ import android.util.Log;
 import com.mis571_group_d.suchef.app.App;
 import com.mis571_group_d.suchef.data.model.Ingredient;
 import com.mis571_group_d.suchef.data.model.User;
+import com.mis571_group_d.suchef.data.repo.CuisineRepo;
 import com.mis571_group_d.suchef.data.repo.IngredientRepo;
 import com.mis571_group_d.suchef.data.repo.RecipeRepo;
 import com.mis571_group_d.suchef.data.repo.SampleData;
 import com.mis571_group_d.suchef.data.repo.FavouriteRepo;
 import com.mis571_group_d.suchef.data.repo.UserRepo;
+import com.mis571_group_d.suchef.data.repo.UtensilsRepo;
 
 /**
  * Created by abhishek on 11/29/2016.
@@ -41,15 +43,20 @@ public class DBHelper  extends SQLiteOpenHelper {
         //All necessary tables you like to create will create here
         db.execSQL(UserRepo.createTable());
         db.execSQL(IngredientRepo.createTable());
+        db.execSQL(UtensilsRepo.createTable());
         db.execSQL(RecipeRepo.createTable());
         db.execSQL(RecipeRepo.recipeMaterials());
         db.execSQL(FavouriteRepo.createTable());
+        db.execSQL(CuisineRepo.createTable());
 
         //Inserting sample data into application
         db.execSQL(SampleData.ingredients());
+        db.execSQL(SampleData.utensils());
         db.execSQL(SampleData.users());
         db.execSQL(SampleData.recipe());
         db.execSQL(SampleData.user_favourites());
+        db.execSQL(SampleData.recipe_materials());
+        db.execSQL(SampleData.cuisines());
     }
 
     @Override

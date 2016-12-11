@@ -52,6 +52,9 @@
     <string name="mix_search_button">Search</string>
     <string name="mix_search_match_all_ingredients">Search Recipe that match Ingredients</string>
 
+    <!-- Strings related to Home screen-->
+    <string name="todayrecipe">TODAY\'S RECIPE</string>
+
 
     <!-- Strings related to Recipe Detail -->
     <string name="ingredients">Ingredients</string>

@@ -30,10 +30,10 @@ public class IngredientRepo {
      */
     public static String createTable() {
         String query = "CREATE TABLE `" + Ingredient.TABLE + "` (" +
-                "`" + Ingredient.KEY_INGREDIENTID + "`    INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "`" + Ingredient.KEY_INGREDIENT_ID + "`    INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "`" + Ingredient.KEY_NAME + "`            TEXT," +
                 "`" + Ingredient.KEY_CALORIE + "`         INTEGER," +
-                "`" + Ingredient.KEY_PROTIEN + "`         INTEGER," +
+                "`" + Ingredient.KEY_PROTEIN + "`         INTEGER," +
                 "`" + Ingredient.KEY_CARBOHYDRATE + "`    INTEGER," +
                 "`" + Ingredient.KEY_FAT + "`             INTEGER," +
                 "`" + Ingredient.KEY_IMAGE + "`           TEXT," +
@@ -64,7 +64,7 @@ public class IngredientRepo {
                 do {
                     //Inserting data into list
                     ingredients.add(new Ingredient(
-                            cursor.getLong(cursor.getColumnIndex(Ingredient.KEY_INGREDIENTID)),
+                            cursor.getLong(cursor.getColumnIndex(Ingredient.KEY_INGREDIENT_ID)),
                             cursor.getString(cursor.getColumnIndex(Ingredient.KEY_NAME)),
                             cursor.getString(cursor.getColumnIndex(Ingredient.KEY_IMAGE))
                         )
