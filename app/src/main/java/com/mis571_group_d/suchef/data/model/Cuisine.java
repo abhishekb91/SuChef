@@ -1,12 +1,10 @@
 package com.mis571_group_d.suchef.data.model;
 
-import java.util.Date;
-
 /**
  * Created by rogelio on 12/7/16.
  */
 
-public class Cuisines {
+public class Cuisine {
     /**
      */
     public static final String TABLE = "cuisines";
@@ -15,8 +13,9 @@ public class Cuisines {
      * Table Columns names
      *
      */
-    public static final String KEY_CUISINESID   = "cuisines_id";
-    public static final String KEY_CUISINESNAME = "name";
+    public static final String KEY_CUISINE_ID   = "cuisine_id";
+    public static final String KEY_CUISINE_NAME = "name";
+    public static final String KEY_CUISINE_IMAGE = "image";
     public static final String KEY_IS_DELETE    = "is_delete";
 
     /**
@@ -25,12 +24,19 @@ public class Cuisines {
      */
     private long mCuisineID;
     private String mCuisineName;
+    private String mCuisineImage;
     private Boolean mIsDelete ;
 
     /**
      * Defining Getter and Setter methods
      *
      */
+
+    public Cuisine(long cuisineId, String cuisineName, String cuisineImage) {
+        mCuisineID = cuisineId;
+        mCuisineName = cuisineName;
+        mCuisineImage = cuisineImage;
+    }
 
     public long getCuisineId() {
         return mCuisineID;

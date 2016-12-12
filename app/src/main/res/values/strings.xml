@@ -60,6 +60,9 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
 
+    <!-- Strings related to Home screen-->
+    <string name="todayrecipe">TODAY\'S RECIPE</string>
+
 
     <!-- Strings related to Recipe Detail -->
     <string name="ingredients">Ingredients</string>

@@ -1,7 +1,15 @@
 package com.mis571_group_d.suchef.data.repo;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.mis571_group_d.suchef.data.DatabaseManager;
+import com.mis571_group_d.suchef.data.model.Favourite;
 import com.mis571_group_d.suchef.data.model.Recipe;
+
+import java.util.ArrayList;
 
 /**
  * Created by abhishek on 12/7/2016.
@@ -65,5 +73,46 @@ public class RecipeRepo {
         Recipe recipe = new Recipe();
 
         return recipe;
+    }
+
+    /**
+     * This function is used for recipe result from search screen
+     *
+     * @param query
+     * @return
+     */
+    public ArrayList recipeSearchResult(String query) {
+        ArrayList result = new ArrayList<>();
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        Log.d(TAG, query);
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    //Inserting data into list
+                    result.add(new Recipe(
+                                    cursor.getLong(cursor.getColumnIndex(Recipe.KEY_RECIPE_ID)),
+                                    cursor.getString(cursor.getColumnIndex(Recipe.KEY_NAME)),
+                                    cursor.getString(cursor.getColumnIndex(Recipe.KEY_IMAGE)),
+                                    true
+                            )
+                    );
+
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while getting user information");
+        } finally {
+            cursor.close();
+            DatabaseManager.getInstance().closeDatabase();
+        }
+
+        cursor.close();
+
+        return result;
     }
 }

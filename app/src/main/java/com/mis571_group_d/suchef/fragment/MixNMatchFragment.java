@@ -1,7 +1,9 @@
 package com.mis571_group_d.suchef.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +12,17 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.Toast;
 
 
 import com.mis571_group_d.suchef.R;
-import com.mis571_group_d.suchef.activity.RecipeActivity;
 import com.mis571_group_d.suchef.activity.SearchResultActivity;
 import com.mis571_group_d.suchef.adapter.IngredientAdapter;
+import com.mis571_group_d.suchef.adapter.UtensilAdapter;
 import com.mis571_group_d.suchef.data.repo.IngredientRepo;
+import com.mis571_group_d.suchef.data.repo.UtensilsRepo;
 
 
 import java.util.ArrayList;
@@ -36,7 +41,7 @@ public class MixNMatchFragment extends Fragment {
 
     private Boolean mSearchExactRecipe;
 
-    private ArrayList mSelectedIngredients;
+    private ArrayList mSelectedIngredients, mSelectedUtensils;
 
     public MixNMatchFragment() {
         // Required empty public constructor
@@ -58,15 +63,9 @@ public class MixNMatchFragment extends Fragment {
 
         //Passing ingredient values to IngredientAdapter
         IngredientAdapter ingredientAdapter = new IngredientAdapter(getActivity(), ingredients);
-        GridView gridView = (GridView) view.findViewById(R.id.ingredient_grid);
+        final GridView gridView = (GridView) view.findViewById(R.id.ingredient_grid);
 
-        Switch SearchExactRecipe = (Switch) view.findViewById(R.id.search_matching_recipe);
-        SearchExactRecipe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mSearchExactRecipe = (isChecked) ? true : false;
-            }
-        });
+        gridView.setSelector(R.drawable.item_selector);
 
         //Assigning the adaptor to the grid view
         gridView.setAdapter(ingredientAdapter);
@@ -82,12 +81,63 @@ public class MixNMatchFragment extends Fragment {
                 if(isSelected) {
                     //If ingredient is selected, remove it from ArrayList
                     mSelectedIngredients.remove(mSelectedIngredients.indexOf(id));
-                    view.setBackgroundColor(0x00000000);
+
+                    view.setBackgroundColor(Color.TRANSPARENT);
+                    //gridView.setItemChecked(position, true);
                 } else {
                     //If ingredient is not selected, add it to ArrayList
                     mSelectedIngredients.add(id);
+
+                    //gridView.setItemChecked(position, false);
+                    view.setBackgroundColor(Color.YELLOW);
+                }
+            }
+        });
+
+        //Creating ingredientRepo object
+        UtensilsRepo utenRepo = new UtensilsRepo();
+
+        //Getting list of all ingredients
+        ArrayList utensils = utenRepo.getUtensils();
+
+        //Initializing Ingredients ArrayList
+        mSelectedUtensils = new ArrayList<>();
+
+        //Passing ingredient values to IngredientAdapter
+        UtensilAdapter materialAdapterUtensil = new UtensilAdapter(getActivity(), utensils);
+        GridView utensilGridView = (GridView) view.findViewById(R.id.utensils_grid);
+
+
+        //Assigning the adaptor to the grid view
+        utensilGridView.setAdapter(materialAdapterUtensil);
+
+
+        //setting the onClick event
+        utensilGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //Checking if user have previously selected an ingredient or not
+                boolean isSelected = mSelectedUtensils.contains(id);
+
+                if(isSelected) {
+                    //If ingredient is selected, remove it from ArrayList
+                    mSelectedUtensils.remove(mSelectedUtensils.indexOf(id));
+                    view.setBackgroundColor(0x00000000);
+                } else {
+                    //If ingredient is not selected, add it to ArrayList
+                    mSelectedUtensils.add(id);
                     view.setBackgroundColor(0xFF00FFFF);
                 }
+            }
+        });
+
+
+        Switch SearchExactRecipe = (Switch) view.findViewById(R.id.search_matching_recipe);
+        SearchExactRecipe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mSearchExactRecipe = (isChecked) ? true : false;
             }
         });
 
@@ -97,10 +147,16 @@ public class MixNMatchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getActivity(), SearchResultActivity.class);
-                i.putExtra("searchExactRecipe", mSearchExactRecipe);
-                i.putExtra("selectedIngredient", mSelectedIngredients);
-                startActivity(i);
+                //Check if user has selected an ingredient or not
+                if(!mSelectedIngredients.isEmpty()) {
+                    Intent i = new Intent(getActivity(), SearchResultActivity.class);
+                    i.putExtra("searchExactRecipe", mSearchExactRecipe);
+                    i.putExtra("selectedIngredient", mSelectedIngredients);
+                    i.putExtra("selectedUtensils", mSelectedUtensils);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getActivity(),"Please select atleast one ingredient",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

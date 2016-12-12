@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,14 +20,13 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mis571_group_d.suchef.data.model.User;
-import com.mis571_group_d.suchef.data.repo.UserRepo;
+import com.mis571_group_d.suchef.data.repo.SampleData;
 import com.mis571_group_d.suchef.fragment.FavouriteFragment;
 import com.mis571_group_d.suchef.R;
 import com.mis571_group_d.suchef.data.SessionManager;
 import com.mis571_group_d.suchef.fragment.HomeFragment;
 import com.mis571_group_d.suchef.fragment.MixNMatchFragment;
-import com.mis571_group_d.suchef.fragment.SettingsFragment;
+import com.mis571_group_d.suchef.fragment.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d("Cuisine", SampleData.cuisines());
+
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -102,9 +106,6 @@ public class MainActivity extends AppCompatActivity {
             loadHomeFragment();
         }
 
-
-        UserRepo userRepo = new UserRepo();
-        userRepo.getUserDetails();
     }
 
 
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 return new MixNMatchFragment();
             case 3:
                 // profile fragment
-                return new SettingsFragment();
+                return new ProfileFragment();
             default:
                 return new HomeFragment();
         }
