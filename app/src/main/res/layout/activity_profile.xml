@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:text="Date of Birth"
+        android:layout_width="293dp"
+        android:layout_height="38dp"
+        android:id="@+id/textView5"
+        android:textStyle="bold"
+        android:textSize="24sp" />
+
+    <DatePicker
+            android:id="@+id/user_date_of_birth"
+            android:layout_width="360dp"
+            android:layout_height="305dp"></DatePicker>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="355dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Gender"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/radioSex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="98dp"
+                android:layout_height="50dp"
+                android:text="@string/female" />
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="81dp"
+                android:layout_height="50dp"
+                android:text="@string/male" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/update_button"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/update_btn" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" />
+
+    </LinearLayout>
+</ScrollView>

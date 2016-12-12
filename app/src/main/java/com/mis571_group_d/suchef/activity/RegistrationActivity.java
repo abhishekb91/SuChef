@@ -1,19 +1,22 @@
 package com.mis571_group_d.suchef.activity;
 
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 
 import com.mis571_group_d.suchef.R;
@@ -29,8 +32,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     // UI references.
     private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-
+    private EditText mPasswordView, mRePassword;
+    private View mProgressView;
+    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
+        mRePassword = (EditText) findViewById(R.id.repassword);
 
         Button mRegistrationButton = (Button) findViewById(R.id.email_sign_in_button);
         mRegistrationButton.setOnClickListener(new OnClickListener() {
@@ -59,9 +64,32 @@ public class RegistrationActivity extends AppCompatActivity {
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String rePassword = mRePassword.getText().toString();
 
         boolean cancel = false;
+        View focusView = null;
 
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (TextUtils.isEmpty(password)){
+            mPasswordView.setError(getString(R.string.error_field_required));
+            focusView = mPasswordView;
+            cancel = true;
+        } else if( !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        } else if ( password.compareTo(rePassword) != 0 ) {
+            mPasswordView.setError(getString(R.string.error_field_incorrect));
+            focusView = mPasswordView;
+            cancel = true;
+       }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first

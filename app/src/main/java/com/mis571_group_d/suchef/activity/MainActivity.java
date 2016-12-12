@@ -26,7 +26,8 @@ import com.mis571_group_d.suchef.R;
 import com.mis571_group_d.suchef.data.SessionManager;
 import com.mis571_group_d.suchef.fragment.HomeFragment;
 import com.mis571_group_d.suchef.fragment.MixNMatchFragment;
-import com.mis571_group_d.suchef.fragment.ProfileFragment;
+import com.mis571_group_d.suchef.fragment.SettingsFragment;
+import com.mis571_group_d.suchef.fragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -171,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 return new MixNMatchFragment();
             case 3:
                 // profile fragment
-                return new ProfileFragment();
+                return new SettingsFragment();
             default:
                 return new HomeFragment();
         }

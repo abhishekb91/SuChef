@@ -149,7 +149,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }, 3000);
 
-            } else {
+            }
+            else {
                 Toast.makeText(this, getString(R.string.error_invalid_credentials), Toast.LENGTH_SHORT).show();
             }
         }
