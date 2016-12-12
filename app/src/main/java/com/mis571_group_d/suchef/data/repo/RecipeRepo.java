@@ -8,6 +8,14 @@ import android.util.Log;
 
 import com.mis571_group_d.suchef.data.DatabaseManager;
 import com.mis571_group_d.suchef.data.model.Favourite;
+
+import android.database.sqlite.SQLiteDatabase;
+
+import com.mis571_group_d.suchef.data.DatabaseManager;
+import com.mis571_group_d.suchef.data.model.Cuisine;
+import com.mis571_group_d.suchef.data.model.Ingredient;
+import com.mis571_group_d.suchef.data.model.Recipe;
+import com.mis571_group_d.suchef.data.model.User;
 import com.mis571_group_d.suchef.data.model.Ingredient;
 import com.mis571_group_d.suchef.data.model.Recipe;
 import com.mis571_group_d.suchef.data.model.Utensil;
@@ -72,10 +80,23 @@ public class RecipeRepo {
      * @param recipeId is the id of recipe
      * @return recipe object
      */
-    public Recipe recipeDetail(long recipeId) {
-        Recipe recipe = new Recipe();
+    public String recipeDetail(long recipeId) {
 
-        return recipe;
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+
+        String queryDetail = "SELECT r." + Recipe.KEY_NAME + ", r." + Recipe.KEY_DESCRIPTION +
+                ", r." + Recipe.KEY_PREPARATION_METHOD + ", c." + Cuisine.KEY_CUISINE_NAME +
+                " FROM " + Recipe.TABLE + " r," + Cuisine.TABLE + " c" +
+                " WHERE r." + Recipe.KEY_RECIPE_ID + " = '" + recipeId + "'" +
+                " AND r." + Recipe.KEY_CUSINE_ID + " = c." + Cuisine.KEY_CUISINE_ID + ";";
+//       "SELECT r.name, r.description
+//      , r.preparation_method, c.name
+//        FROM recipes r, cuisines c
+//        WHERE r.recipe_id = recipeId
+//        AND r.cuisines_id = c.cuisines_id;
+
+        return queryDetail;
     }
 
     /**

@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.mis571_group_d.suchef.data.DatabaseManager;
 import com.mis571_group_d.suchef.data.model.Ingredient;
+import com.mis571_group_d.suchef.data.model.Recipe;
+
 import java.util.ArrayList;
 
 /**
@@ -83,4 +85,48 @@ public class IngredientRepo {
 
         return ingredients;
     }
+    /**
+     * Function for recipe details
+     *
+     * @param recipeId is the id of recipe
+     * @return ingredients object
+     */
+    public static Ingredient recipeDetail(long recipeId) {
+        Ingredient ingredient = new Ingredient();
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String queryIngredients = "SELECT i." + Ingredient.KEY_NAME + ", m." + Recipe.KEY_AMOUNT + ", m." + Recipe.KEY_UNIT +
+                " FROM " + Ingredient.TABLE + " i," + Recipe.TABLE + " m" +
+                " WHERE m." + Recipe.KEY_TYPE + " = 1" +
+                " AND i." + Ingredient.KEY_INGREDIENT_ID + " = m." + Recipe.KEY_MATERIAL_ID + ";" +
+                " AND m." + Recipe.KEY_RECIPE_ID + " = '" + recipeId + "';";
+//        "SELECT i.name, m.amount, m.unit
+//        FROM ingredients i, recipe_materials m
+//        WHERE m.type = 1 //type 1 is ingredients
+//        AND i.ingredients_id = m.material_id
+//        AND m.recipe_id = recipeId
+
+        return ingredient;
+    }
+    public static Ingredient recipeNutrition(long recipeId) {
+        Ingredient ingredient = new Ingredient();
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String queryNutrition = "SELECT SUM(i." + Ingredient.KEY_CALORIE + " * m." + Recipe.KEY_AMOUNT + ")" +
+                " SUM(i." + Ingredient.KEY_PROTEIN + " * m." + Recipe.KEY_AMOUNT + ")" +
+                " SUM(i." + Ingredient.KEY_CARBOHYDRATE + " * m." + Recipe.KEY_AMOUNT + ")" +
+                " SUM(i." + Ingredient.KEY_FAT + " * m." + Recipe.KEY_AMOUNT + ")" +
+                " FROM " + Ingredient.TABLE + " i," + Recipe.TABLE + " m" +
+                " WHERE m." + Recipe.KEY_TYPE + " = 1" +
+                " AND i." + Ingredient.KEY_INGREDIENT_ID + " = m." + Recipe.KEY_MATERIAL_ID + ";" +
+                " AND m." + Recipe.KEY_RECIPE_ID + " = '" + recipeId + "';";
+//        "SELECT SUM(i.calorie * m.amount), SUM(i.protein * m.amount), SUM(i.carbohydrate * m.amount), SUM(i.fat * m.amount)
+//        FROM ingredients i, recipe_materials m
+//        WHERE m.type = //  type 1 is ingredients
+//        AND i.ingredients_id = m.material_id
+//        AND m.recipe_id = recipeId
+
+        return ingredient;
+    }
+
 }

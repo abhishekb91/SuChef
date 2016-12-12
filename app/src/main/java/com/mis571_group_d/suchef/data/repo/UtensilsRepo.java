@@ -1,13 +1,14 @@
 package com.mis571_group_d.suchef.data.repo;
 
 
+import android.database.sqlite.SQLiteDatabase;
+
+import com.mis571_group_d.suchef.data.DatabaseManager;
+import com.mis571_group_d.suchef.data.model.Recipe;
+import com.mis571_group_d.suchef.data.model.Utensil;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
-import com.mis571_group_d.suchef.data.DatabaseManager;
-import com.mis571_group_d.suchef.data.model.Ingredient;
-import com.mis571_group_d.suchef.data.model.Utensil;
 
 import java.util.ArrayList;
 
@@ -69,5 +70,27 @@ public class UtensilsRepo {
         cursor.close();
 
         return ingredients;
+    }
+    /**
+     * Function for recipe details
+     *
+     * @param recipeId is the id of recipe
+     * @return utensils object
+     */
+    public static Utensil recipeDetail(long recipeId) {
+        Utensil utensils = new Utensil(recipeId, Utensil.KEY_UTENSIL_NAME,Utensil.KEY_UTENSIL_IMAGE);
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String queryUtensil = "SELECT u." + Utensil.KEY_UTENSIL_NAME + ", m." + Recipe.KEY_AMOUNT + ", m." + Recipe.KEY_UNIT +
+                " FROM " + Utensil.TABLE + " u," + Recipe.TABLE + " m" +
+                " WHERE m." + Recipe.KEY_TYPE + " = 2" +
+                " AND u." + Utensil.KEY_UTENSIL_ID + " = m." + Recipe.KEY_MATERIAL_ID + ";" +
+                " AND m." + Recipe.KEY_RECIPE_ID + " = '" + recipeId + "';";
+//        "SELECT u.name, m.amount, m.unit
+//        FROM utensils u, recipe_materials m
+//        WHERE m.type = //  type 2 is utensils
+//        AND u.utensils_id = m.material_id
+//        AND m.recipe_id = recipeId
+
+        return utensils;
     }
 }
