@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.mis571_group_d.suchef.R;
 import com.mis571_group_d.suchef.activity.ProfileActivity;
+import com.mis571_group_d.suchef.activity.UpdatePasswordActivity;
 import com.mis571_group_d.suchef.data.SessionManager;
 
 /**
@@ -34,8 +35,8 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.settings_profile, container, false);
 
-        mChangePassword = (TableRow) view.findViewById(R.id.update_profile);
-        mChangePassword.setOnClickListener(new View.OnClickListener() {
+        mChangeProfile= (TableRow) view.findViewById(R.id.update_profile);
+        mChangeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), ProfileActivity.class);
@@ -43,8 +44,20 @@ public class SettingsFragment extends Fragment {
                 startActivity(i);
             }
         });
+        mChangePassword=(TableRow) view.findViewById(R.id.update_password);
+        mChangePassword.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), UpdatePasswordActivity.class);
+
+                startActivity(i);
+            }
+        });
 
         return view;
+        
+
     }
+
 
 }

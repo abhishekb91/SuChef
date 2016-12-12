@@ -59,6 +59,9 @@
     <string name="date">Date</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="utensils_grid">Utensils</string>
+
+
 
     <!-- Strings related to Home screen-->
     <string name="todayrecipe">TODAY\'S RECIPE</string>
