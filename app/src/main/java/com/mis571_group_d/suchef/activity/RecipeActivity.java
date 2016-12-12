@@ -65,12 +65,5 @@ public class RecipeActivity extends AppCompatActivity {
 
 
     }
-    public void onClick(View v)
-    {
-        String sql="";
-        int id=v.getId();
-        if (id==R.id.results_found_list){
-        }
-    }
 
 }
