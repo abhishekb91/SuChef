@@ -80,7 +80,7 @@ public class SampleData {
 
         String query = "INSERT INTO `" + Recipe.RECIPE_MATERIALS_TABLE + "`(`" + Recipe.KEY_RECIPE_ID + "`,`" + Recipe.KEY_MATERIAL_ID + "`,`" + Recipe.KEY_AMOUNT + "`,`" + Recipe.KEY_UNIT + "`,`" + Recipe.KEY_TYPE + "`) VALUES " +
                 "(1,1,1,'spoon',1),(1,2,2,'spoon',1),(1,3,3,'spoon',1),(1,4,4,'spoon',1),(1,3,1,'unit',2)," +
-                "(2,1,2,'spoon',1),(2,2,3,'spoon',1),(2,3,4,'spoon',1),(2,4,5,'spoon',1),(2,4,1,'unit',2)," +
+                "(2,1,2,'spoon',1),(2,2,3,'spoon',1),(2,3,4,'spoon',1),(2,4,5,'spoon',1),(2,3,1,'unit',2)," +
                 "(3,9,2,'spoon',1),(3,10,500,'Gms',1),(3,11,1,'cup',1),(3,12,2,'piece',1),(3,13,2,'spoon',1),(3,3,1,'unit',2),(3,2,1,'unit',2);";
 
         return query;

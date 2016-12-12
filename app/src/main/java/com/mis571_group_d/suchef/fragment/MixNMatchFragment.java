@@ -39,7 +39,7 @@ public class MixNMatchFragment extends Fragment {
 
     private Button mSearchButton;
 
-    private Boolean mSearchExactRecipe;
+    private Boolean mSearchExactRecipe = false;
 
     private ArrayList mSelectedIngredients, mSelectedUtensils;
 

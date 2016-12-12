@@ -30,17 +30,18 @@ public class SearchResultActivity extends AppCompatActivity {
 
         Boolean isExactRecipe = (Boolean) getIntent().getSerializableExtra("searchExactRecipe");
 
-        Log.i(TAG, "inside");
-
-        String query = " SELECT r.* " +
-                " FROM `" + Recipe.TABLE + "` r " +
-                " WHERE r." + Recipe.KEY_IS_DELETE + " = 0;";
-
-
         RecipeRepo repo = new RecipeRepo();
 
-        //Getting list of all ingredients
-        ArrayList recipes = repo.recipeSearchResult(query);
+        ArrayList recipes;
+
+        //Check if user has selected Exact Recipe or not
+        if(isExactRecipe){
+            //searching extensively if recipe contains all ingredients or not
+            recipes = repo.recipeSearchResultExtensive(ingredients, utensils);
+        } else {
+            //Searching if recipe contains all the ingredients or not
+            recipes = repo.recipeSearchResult(ingredients, utensils);
+        }
 
         RecipeAdaptor recipeAdaptor = new RecipeAdaptor(this, recipes);
         ListView listView = (ListView) findViewById(R.id.results_found_list);

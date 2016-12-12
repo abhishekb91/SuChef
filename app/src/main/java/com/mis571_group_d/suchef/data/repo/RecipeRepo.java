@@ -3,11 +3,14 @@ package com.mis571_group_d.suchef.data.repo;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.mis571_group_d.suchef.data.DatabaseManager;
 import com.mis571_group_d.suchef.data.model.Favourite;
+import com.mis571_group_d.suchef.data.model.Ingredient;
 import com.mis571_group_d.suchef.data.model.Recipe;
+import com.mis571_group_d.suchef.data.model.Utensil;
 
 import java.util.ArrayList;
 
@@ -78,13 +81,41 @@ public class RecipeRepo {
     /**
      * This function is used for recipe result from search screen
      *
-     * @param query
+     * @param ingredients
+     * @param utensils
      * @return
      */
-    public ArrayList recipeSearchResult(String query) {
+    public ArrayList recipeSearchResult(ArrayList ingredients, ArrayList utensils) {
         ArrayList result = new ArrayList<>();
 
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String query;
+
+        query = "SELECT r." + Recipe.KEY_RECIPE_ID + " as " + Recipe.KEY_RECIPE_ID + ", " +
+                "r." + Recipe.KEY_NAME + " as " + Recipe.KEY_NAME + ", " +
+                "r." + Recipe.KEY_IMAGE + " as " + Recipe.KEY_IMAGE + " " +
+                "FROM `" + Recipe.TABLE + "` as r " +
+                "JOIN `" + Recipe.RECIPE_MATERIALS_TABLE + "` as rm on r." + Recipe.KEY_RECIPE_ID + " = rm." + Recipe.KEY_RECIPE_ID + " " +
+                "JOIN `" + Ingredient.TABLE + "` as i on (i." + Ingredient.KEY_INGREDIENT_ID + " = rm." + Recipe.KEY_MATERIAL_ID + " AND type = 1) " +
+                "WHERE ( i." + Ingredient.KEY_INGREDIENT_ID + " IN (" + TextUtils.join(", ", ingredients) + ")  ) " +
+                "GROUP BY r." + Recipe.KEY_RECIPE_ID + " ";
+
+
+        //Check if user had selected utensils or not
+        if (!utensils.isEmpty()) {
+
+            query += "INTERSECT " +
+
+                    "SELECT r." + Recipe.KEY_RECIPE_ID + " as " + Recipe.KEY_RECIPE_ID + ", " +
+                    "r." + Recipe.KEY_NAME + " as " + Recipe.KEY_NAME + ", " +
+                    "r." + Recipe.KEY_IMAGE + " as " + Recipe.KEY_IMAGE + " " +
+                    "FROM `" + Recipe.TABLE + "` as r " +
+                    "JOIN `" + Recipe.RECIPE_MATERIALS_TABLE + "` as rm on r." + Recipe.KEY_RECIPE_ID + " = rm." + Recipe.KEY_RECIPE_ID + " " +
+                    "JOIN `" + Utensil.TABLE + "` as u on (u." + Utensil.KEY_UTENSIL_ID + " = rm." + Recipe.KEY_MATERIAL_ID + " AND rm.type = 2) " +
+                    "WHERE ( u." + Utensil.KEY_UTENSIL_ID + " IN (" + TextUtils.join(", ", utensils) + ")  ) " +
+                    "GROUP BY r." + Recipe.KEY_RECIPE_ID + ";";
+        }
 
         Log.d(TAG, query);
 
@@ -105,7 +136,78 @@ public class RecipeRepo {
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            Log.d(TAG, "Error while getting user information");
+            Log.e(TAG, "Error while getting user information");
+        } finally {
+            cursor.close();
+            DatabaseManager.getInstance().closeDatabase();
+        }
+
+        cursor.close();
+
+        return result;
+    }
+
+    public ArrayList recipeSearchResultExtensive(ArrayList ingredients, ArrayList utensils) {
+        ArrayList result = new ArrayList<>();
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String query = "";
+
+        for (int i = 0; i < ingredients.size(); i++) {
+
+            if (i != 0) {
+                query += " INTERSECT ";
+            }
+
+            query += " SELECT r." + Recipe.KEY_RECIPE_ID + " as " + Recipe.KEY_RECIPE_ID + ", " +
+                    " r." + Recipe.KEY_NAME + " as " + Recipe.KEY_NAME + ", " +
+                    " r." + Recipe.KEY_IMAGE + " as " + Recipe.KEY_IMAGE + " " +
+                    " FROM `" + Recipe.TABLE + "` as r " +
+                    " JOIN `" + Recipe.RECIPE_MATERIALS_TABLE + "` as rm on r." + Recipe.KEY_RECIPE_ID + " = rm." + Recipe.KEY_RECIPE_ID + " " +
+                    " JOIN `" + Ingredient.TABLE + "` as i on (i." + Ingredient.KEY_INGREDIENT_ID + " = rm." + Recipe.KEY_MATERIAL_ID + " AND type = 1) " +
+                    " WHERE i." + Ingredient.KEY_INGREDIENT_ID + " = " + ingredients.get(i) +
+                    " GROUP BY r." + Recipe.KEY_RECIPE_ID + " ";
+        }
+
+        //Check if user had selected utensils or not
+        if (!utensils.isEmpty()) {
+
+            for (int i = 0; i < utensils.size(); i++) {
+
+                query += " INTERSECT " +
+                        " SELECT r." + Recipe.KEY_RECIPE_ID + " as " + Recipe.KEY_RECIPE_ID + ", " +
+                        " r." + Recipe.KEY_NAME + " as " + Recipe.KEY_NAME + ", " +
+                        " r." + Recipe.KEY_IMAGE + " as " + Recipe.KEY_IMAGE + " " +
+                        " FROM `" + Recipe.TABLE + "` as r " +
+                        " JOIN `" + Recipe.RECIPE_MATERIALS_TABLE + "` as rm on r." + Recipe.KEY_RECIPE_ID + " = rm." + Recipe.KEY_RECIPE_ID + " " +
+                        " JOIN `" + Utensil.TABLE + "` as u on (u." + Utensil.KEY_UTENSIL_ID + " = rm." + Recipe.KEY_MATERIAL_ID + " AND rm.type = 2) " +
+                        " WHERE u." + Utensil.KEY_UTENSIL_ID + " = " + utensils.get(i)  +
+                        " GROUP BY r." + Recipe.KEY_RECIPE_ID + ";";
+            }
+
+        }
+
+        Log.d(TAG, query);
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    //Inserting data into list
+                    result.add(new Recipe(
+                                    cursor.getLong(cursor.getColumnIndex(Recipe.KEY_RECIPE_ID)),
+                                    cursor.getString(cursor.getColumnIndex(Recipe.KEY_NAME)),
+                                    cursor.getString(cursor.getColumnIndex(Recipe.KEY_IMAGE)),
+                                    true
+                            )
+                    );
+
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error while getting user information");
         } finally {
             cursor.close();
             DatabaseManager.getInstance().closeDatabase();
