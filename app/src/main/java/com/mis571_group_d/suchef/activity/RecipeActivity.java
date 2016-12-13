@@ -1,69 +1,113 @@
 package com.mis571_group_d.suchef.activity;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mis571_group_d.suchef.R;
-import com.mis571_group_d.suchef.data.DBHelper;
-import com.mis571_group_d.suchef.data.DatabaseManager;
+import com.mis571_group_d.suchef.data.SessionManager;
 import com.mis571_group_d.suchef.data.model.Ingredient;
 import com.mis571_group_d.suchef.data.model.Recipe;
-import com.mis571_group_d.suchef.data.repo.IngredientRepo;
+import com.mis571_group_d.suchef.data.model.Utensil;
 import com.mis571_group_d.suchef.data.repo.RecipeRepo;
-import com.mis571_group_d.suchef.data.repo.UtensilsRepo;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.mis571_group_d.suchef.R.id.recipe_preparation_method;
 
 public class RecipeActivity extends AppCompatActivity {
 
     private static String TAG = RecipeActivity.class.getSimpleName().toString();
-    ImageView recipe_coverImage;
-    TextView recipe_name, recipe_description,recipe_preparation_method;
-    Button add_favourite;
-    List<Recipe> recipeDetailList;
 
+    TextView ingredientsTextView, utensilsTextView, preparationTextView;
+
+    Button favouriteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        long recipeId = (long) getIntent().getSerializableExtra("recipeId");
-        recipeDetailList = new ArrayList<Recipe>();
+        final long recipeId = (long) getIntent().getSerializableExtra("recipeId");
 
-        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        Log.i(TAG, "recipeID = " + recipeId);
-        Cursor cursor = db.query("recipes", null, null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            Long id = cursor.getLong(cursor.getColumnIndex(Recipe.KEY_RECIPE_ID));
-            String name = cursor.getString(cursor.getColumnIndex(Recipe.KEY_NAME));
-            String image = cursor.getString(cursor.getColumnIndex(Recipe.KEY_IMAGE));
-            Boolean isUserFavourite = cursor.getInt(cursor.getColumnIndex(Recipe.KEY_IS_DELETE)) > 0;
-            // TODO: 12/12/16 KEY_IS_FAVOURITE 
-            Recipe r = new Recipe(id,name,image,isUserFavourite);
-            recipeDetailList.add(r);
+        final RecipeRepo recipeRepo = new RecipeRepo();
+
+        final Recipe recipe = recipeRepo.recipeDetail(recipeId);
+
+        //Getting Recipe Ingredients in a String
+        String recipeIngredents = "";
+
+        for (int i = 0; i < recipe.getRecipeIngredients().size(); i++) {
+            Ingredient tempIng = (Ingredient) recipe.getRecipeIngredients().get(i);
+
+            recipeIngredents += (i+1) + ") " + ((int) tempIng.getAmount()) + " " + tempIng.getUnit() + " of " + tempIng.getIngredientName() + "\n";
         }
 
-        recipe_coverImage=(ImageView)this.findViewById(R.id.recipe_coverImage);
-        recipe_name=(TextView)this.findViewById(R.id.recipe_name);
-        recipe_description=(TextView)this.findViewById(R.id.recipe_description);
-        recipe_preparation_method=(TextView)this.findViewById(R.id.recipe_preparation_method);
-        add_favourite=(Button)this.findViewById(R.id.add_favourite);
+        //Setting Ingredients in the TextView
+        ingredientsTextView = (TextView) findViewById(R.id.recipe_ingredients);
+        ingredientsTextView.setText(recipeIngredents);
+
+        //Getting Recipe Ingredients in a String
+        String recipeUtensils = "";
+
+        for (int i = 0; i < recipe.getRecipeUtensils().size(); i++) {
+            Utensil tempUtensils = (Utensil) recipe.getRecipeUtensils().get(i);
+
+            recipeUtensils += (i+1) + ") " + ((int) tempUtensils.getAmount()) + " " + tempUtensils.getUtensilName() + "\n";
+        }
+
+        //Setting Ingredients in the TextView
+        utensilsTextView = (TextView) findViewById(R.id.recipe_utensils);
+        utensilsTextView.setText(recipeUtensils);
 
 
-//        recipe_coverImage.setImageAlpha(recipe_coverImage.);
-        recipe_name.setText(recipe_name.toString());
-        recipe_description.setText(recipe_description.toString());
+        //Setting Preparation Method
+        preparationTextView = (TextView) findViewById(R.id.recipe_preparation_method);
+        preparationTextView.setText(recipe.getPreparationMethod().replace("\\n", System.getProperty("line.separator")));
 
+        //Getting user Id
+        SessionManager sessionManager = new SessionManager(this);
+        final long userId = sessionManager.getUserDetails();
 
+        //Referencing Favourite Button
+        favouriteBtn = (Button) findViewById(R.id.add_favourite);
+
+        //Setting Text of Favourite Button
+        favouriteBtn.setText((recipeRepo.checkRecipeFavourite(userId, recipeId)) ? "UNFAV" : "FAV");
+
+        //Listening for favourite button click
+        favouriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message;
+
+                if( !recipeRepo.checkRecipeFavourite(userId, recipeId) ) {
+                    //Save Recipe as user favourite
+                    recipeRepo.addRecipeAsFaourite(userId, recipeId);
+
+                    //Changing the Button Text
+                    favouriteBtn.setText("UNFAV");
+
+                    //Creating message to show on Snackbar
+                    message = recipe.getRecipeName() + " added as favourite";
+                } else {
+                    //Remove Recipe as user favourite
+                    recipeRepo.removeRecipeAsFaourite(userId, recipeId);
+
+                    //Changing the Button Text
+                    favouriteBtn.setText("FAV");
+
+                    //Creating message to show on Snackbar
+                    message = recipe.getRecipeName() + " removed as favourite";
+                }
+
+                //Make Snackbar
+                Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show();
+
+            }
+        });
     }
-
 }

@@ -3,14 +3,12 @@ package com.mis571_group_d.suchef.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mis571_group_d.suchef.R;
-import com.mis571_group_d.suchef.adapter.RecipeAdaptor;
-import com.mis571_group_d.suchef.data.model.Recipe;
+import com.mis571_group_d.suchef.adapter.RecipeAdapter;
 import com.mis571_group_d.suchef.data.repo.RecipeRepo;
 
 import java.util.ArrayList;
@@ -43,11 +41,11 @@ public class SearchResultActivity extends AppCompatActivity {
             recipes = repo.recipeSearchResult(ingredients, utensils);
         }
 
-        RecipeAdaptor recipeAdaptor = new RecipeAdaptor(this, recipes);
+        RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes);
         ListView listView = (ListView) findViewById(R.id.results_found_list);
 
         //Assigning the adaptor to the list view
-        listView.setAdapter(recipeAdaptor);
+        listView.setAdapter(recipeAdapter);
 
         //Redirect user to recipe detail screen when he clicks the recipe
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

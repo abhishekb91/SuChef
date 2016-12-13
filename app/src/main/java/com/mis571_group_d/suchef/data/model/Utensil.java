@@ -11,7 +11,6 @@ public class Utensil {
 
     /**
      * Table Columns names
-     *
      */
     public static final String KEY_UTENSIL_ID = "utensil_id";
     public static final String KEY_UTENSIL_NAME = "name";
@@ -20,18 +19,19 @@ public class Utensil {
 
     /**
      * Defining Class Attributes
-     *
      */
     private long mUtensilID;
     private String mUtensilName;
     private String mUtensilImage;
+    private float mAmount;
+    private String mUnit;
     private Boolean mIsDelete;
 
     /**
      * Defining constructor
      *
-     * @param id Utensil id
-     * @param name Utensil name
+     * @param id    Utensil id
+     * @param name  Utensil name
      * @param image Utensil image
      */
     public Utensil(long id, String name, String image) {
@@ -40,9 +40,15 @@ public class Utensil {
         mUtensilImage = image;
     }
 
+    public Utensil(long id, String name, float amount, String unit) {
+        mUtensilID = id;
+        mUtensilName = name;
+        mAmount = amount;
+        mUnit = unit;
+    }
+
     /**
      * Defining Getter and Setter methods
-     *
      */
 
     public long getId() {
@@ -61,11 +67,35 @@ public class Utensil {
         mUtensilName = UtensilsName;
     }
 
-    public void setUtensilImage (String image) { mUtensilImage = image; }
+    public String getUtensilImage() {
+        return mUtensilImage;
+    }
 
-    public String getUtensilImage () { return mUtensilImage; }
+    public void setUtensilImage(String image) {
+        mUtensilImage = image;
+    }
 
-    public void setIsDelete (Boolean isDelete) { mIsDelete = isDelete; }
+    public float getAmount() {
+        return mAmount;
+    }
 
-    public Boolean getIsDelete () { return mIsDelete; }
+    public void setAmount(float amount) {
+        mAmount = amount;
+    }
+
+    public String getUnit() {
+        return mUnit;
+    }
+
+    public void setUnit(String unit) {
+        mUnit = unit;
+    }
+
+    public Boolean getIsDelete() {
+        return mIsDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) {
+        mIsDelete = isDelete;
+    }
 }

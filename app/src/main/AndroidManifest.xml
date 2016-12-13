@@ -37,8 +37,9 @@
             android:name=".activity.SearchResultActivity"
             android:label="@string/title_activity_search"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.ProfileActivity"></activity>
-        <activity android:name=".activity.UpdatePasswordActivity"></activity>
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.UpdatePasswordActivity" />
+        <activity android:name=".activity.CuisineRecipesActivity"></activity>
     </application>
 
 </manifest>

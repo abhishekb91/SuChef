@@ -1,5 +1,7 @@
 package com.mis571_group_d.suchef.data.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by abhishek on 12/7/2016.
  */
@@ -53,6 +55,8 @@ public class Recipe {
     private String mPreparationMethod;
     private String mImage;
     private Boolean mUserFavourite;
+    private ArrayList mRecipeIngredients;
+    private ArrayList mRecipeUtensils;
     private Boolean mIsDelete;
 
 
@@ -118,6 +122,14 @@ public class Recipe {
     public Boolean getIsDelete() {
         return mIsDelete;
     }
+
+    public void setRecipeIngredients (ArrayList ingredients) {mRecipeIngredients = ingredients;}
+
+    public ArrayList getRecipeIngredients() {return mRecipeIngredients; }
+
+    public void setRecipeUtensils (ArrayList utensils) {mRecipeUtensils = utensils;}
+
+    public ArrayList getRecipeUtensils() {return mRecipeUtensils; }
 
     public void setUserFavourite(Boolean userFavourite) { mUserFavourite = userFavourite; }
 

@@ -60,9 +60,29 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/recipe_description"
+            android:id="@+id/recipe_ingredients"
             android:layout_width="match_parent"
-            android:height="300dp"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#c0c0c0" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/utensils"
+            android:textAllCaps="true"
+            android:textColor="@color/colorRecipeHeading"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/recipe_utensils"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <View
@@ -84,7 +104,6 @@
         <TextView
             android:id="@+id/recipe_preparation_method"
             android:layout_width="match_parent"
-            android:height="300dp"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

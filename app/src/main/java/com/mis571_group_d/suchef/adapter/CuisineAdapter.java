@@ -22,13 +22,21 @@ import java.util.ArrayList;
 
 public class CuisineAdapter extends ArrayAdapter<Cuisine> {
 
+    private ArrayList<Cuisine> mCusisine;
 
     private Context mContext;
 
     public CuisineAdapter(Activity context, ArrayList<Cuisine> cuisine) {
         super(context, 0, cuisine);
 
+        mCusisine = cuisine;
+
         mContext = context;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return mCusisine.get(position).getId();
     }
 
     @NonNull
@@ -51,12 +59,11 @@ public class CuisineAdapter extends ArrayAdapter<Cuisine> {
         cuisineName.setText(currentCuisine.getCuisineName());
 
         //Getting image's resource id
-        //int resourceId = mContext.getResources().getIdentifier("drawable/"+ currentCuisine.getCuisineImage(), null, mContext.getPackageName());
-        //int butter = R.drawable.butter;
+        int resourceId = mContext.getResources().getIdentifier("drawable/"+ currentCuisine.getCuisineImage(), null, mContext.getPackageName());
 
         //Setting the image to the grid
-        //ImageView imageView = (ImageView) listCuisineView.findViewById(R.id.cuisine_image);
-        //imageView.setImageResource(resourceId);
+        ImageView imageView = (ImageView) listCuisineView.findViewById(R.id.cuisine_image);
+        imageView.setImageResource(resourceId);
 
         //returning the Ingredient list
         return listCuisineView;

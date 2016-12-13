@@ -4,23 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.mis571_group_d.suchef.fragment.HomeFragment">
-
-    <TextView
-        android:text="@string/todayrecipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/todaycuisine"
-        android:gravity="center_vertical|center_horizontal"
-        android:textSize="18sp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="20dp" />
-
-    <GridView
-        android:id="@+id/cuisine_grid"
+    <ListView
+        android:id="@+id/cuisine_list"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.mis571_group_d.suchef.fragment.HomeFragment"
-        android:numColumns="1" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

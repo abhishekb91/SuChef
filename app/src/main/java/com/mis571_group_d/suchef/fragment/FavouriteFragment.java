@@ -12,14 +12,12 @@ import android.widget.ListView;
 
 import com.mis571_group_d.suchef.R;
 import com.mis571_group_d.suchef.activity.RecipeActivity;
-import com.mis571_group_d.suchef.adapter.RecipeAdaptor;
+import com.mis571_group_d.suchef.adapter.RecipeAdapter;
 import com.mis571_group_d.suchef.data.SessionManager;
 import com.mis571_group_d.suchef.data.model.User;
 import com.mis571_group_d.suchef.data.repo.FavouriteRepo;
 
 import java.util.ArrayList;
-
-import static android.R.attr.id;
 
 
 /**
@@ -51,11 +49,11 @@ public class FavouriteFragment extends Fragment {
         //Getting list of all ingredients
         ArrayList recipes = favRepo.getUserFavourites(user);
 
-        RecipeAdaptor recipeAdaptor = new RecipeAdaptor(getActivity(), recipes);
+        RecipeAdapter recipeAdapter = new RecipeAdapter(getActivity(), recipes);
         ListView listView = (ListView) view.findViewById(R.id.user_favourite);
 
         //Assigning the adaptor to the list view
-        listView.setAdapter(recipeAdaptor);
+        listView.setAdapter(recipeAdapter);
 
         //Redirect user to recipe detail screen when he clicks the recipe
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

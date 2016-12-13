@@ -27,22 +27,34 @@ public class Cuisine {
     private String mCuisineImage;
     private Boolean mIsDelete ;
 
-    /**
-     * Defining Getter and Setter methods
-     *
-     */
 
+    /**
+     * Constructor
+     *
+     * @param cuisineId
+     * @param cuisineName
+     * @param cuisineImage
+     */
     public Cuisine(long cuisineId, String cuisineName, String cuisineImage) {
         mCuisineID = cuisineId;
         mCuisineName = cuisineName;
         mCuisineImage = cuisineImage;
     }
 
-    public long getCuisineId() {
+    public Cuisine() {
+
+    }
+
+    /**
+     * Defining Getter and Setter methods
+     *
+     */
+
+    public long getId() {
         return mCuisineID;
     }
 
-    public void setCuisineId(long CuisineId) {
+    public void setId(long CuisineId) {
         mCuisineID = CuisineId;
     }
 
@@ -52,6 +64,14 @@ public class Cuisine {
 
     public void setCuisineName(String name) {
         mCuisineName = name;
+    }
+
+    public String getCuisineImage() {
+        return mCuisineImage;
+    }
+
+    public void setCuisineImage(String image) {
+        mCuisineImage = image;
     }
 
     public Boolean getIsDelete() {

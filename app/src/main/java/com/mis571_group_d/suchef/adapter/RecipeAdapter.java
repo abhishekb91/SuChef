@@ -21,13 +21,13 @@ import java.util.ArrayList;
  * Created by abhishek on 12/10/2016.
  */
 
-public class RecipeAdaptor extends ArrayAdapter<Recipe> {
+public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
     private Context mContext;
 
     private ArrayList<Recipe> mRecipes;
 
-    public RecipeAdaptor(Activity context, ArrayList<Recipe> recipes) {
+    public RecipeAdapter(Activity context, ArrayList<Recipe> recipes) {
         super(context, 0, recipes);
 
         mContext = context;

@@ -62,14 +62,14 @@
     <string name="utensils_grid">Utensils</string>
 
 
-
     <!-- Strings related to Home screen-->
     <string name="todayrecipe">TODAY\'S RECIPE</string>
 
 
     <!-- Strings related to Recipe Detail -->
     <string name="ingredients">Ingredients</string>
-    <string name="methods">Methods</string>
+    <string name="utensils">Utensils</string>
+    <string name="methods">Preparation Methods</string>
 
     <!-- Strings related to Search Page-->
     <string name="title_activity_recipe_detail">Recipe Detail</string>

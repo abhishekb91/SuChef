@@ -1,14 +1,19 @@
 package com.mis571_group_d.suchef.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import com.mis571_group_d.suchef.R;
+import com.mis571_group_d.suchef.activity.CuisineRecipesActivity;
+import com.mis571_group_d.suchef.activity.RecipeActivity;
 import com.mis571_group_d.suchef.adapter.CuisineAdapter;
 import com.mis571_group_d.suchef.data.repo.CuisineRepo;
 
@@ -40,9 +45,19 @@ public class HomeFragment extends Fragment {
         //Passing ingredient values to CuisineAdapter
         CuisineAdapter CuisineAdapter = new CuisineAdapter(getActivity(), cuisines);
 
-        GridView gridView = (GridView) view.findViewById(R.id.cuisine_grid);
+        ListView cuisineList = (ListView) view.findViewById(R.id.cuisine_list);
 
-        gridView.setAdapter(CuisineAdapter);
+        cuisineList.setAdapter(CuisineAdapter);
+
+        //Setting on click method
+        cuisineList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getActivity(), CuisineRecipesActivity.class);
+                i.putExtra("cuisineId", id);
+                startActivity(i);
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;
