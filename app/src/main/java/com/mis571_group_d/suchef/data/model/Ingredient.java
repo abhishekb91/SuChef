@@ -40,6 +40,7 @@ public class Ingredient {
     private String mUnit;
     private String mImage;
     private Boolean mIsDelete;
+    private boolean selected;
 
 
     /**
@@ -137,5 +138,13 @@ public class Ingredient {
 
     public Boolean getIsDelete() {
         return mIsDelete;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

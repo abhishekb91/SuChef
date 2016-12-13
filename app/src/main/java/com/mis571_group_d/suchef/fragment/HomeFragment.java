@@ -8,12 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 
 import com.mis571_group_d.suchef.R;
 import com.mis571_group_d.suchef.activity.CuisineRecipesActivity;
-import com.mis571_group_d.suchef.activity.RecipeActivity;
 import com.mis571_group_d.suchef.adapter.CuisineAdapter;
 import com.mis571_group_d.suchef.data.repo.CuisineRepo;
 

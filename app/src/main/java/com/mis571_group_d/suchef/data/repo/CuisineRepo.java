@@ -32,7 +32,6 @@ public class CuisineRepo {
                 + Cuisine.KEY_CUISINE_NAME + " TEXT NOT NULL,"
                 + Cuisine.KEY_CUISINE_IMAGE + " TEXT NOT NULL,"
                 + Cuisine.KEY_IS_DELETE + " INT(1) DEFAULT 0 ); ";
-
         return query;
     }
 

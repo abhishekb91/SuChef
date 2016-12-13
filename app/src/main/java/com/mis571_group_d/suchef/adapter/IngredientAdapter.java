@@ -2,7 +2,9 @@ package com.mis571_group_d.suchef.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +67,13 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient>{
         //Setting the image to the grid
         ImageView imageView = (ImageView) listIngredientView.findViewById(R.id.ingredient_image);
         imageView.setImageResource(resourceId);
+
+        if(currentIngredient.isSelected()) {
+            listIngredientView.setBackgroundColor(Color.YELLOW);
+        } else {
+
+            listIngredientView.setBackgroundColor(Color.WHITE);
+        }
 
         //returning the Ingredient list
         return listIngredientView;

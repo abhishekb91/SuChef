@@ -91,7 +91,7 @@ public class IngredientRepo {
      * @param recipeId is the id of recipe
      * @return ingredients object
      */
-    public static Ingredient recipeDetail(long recipeId) {
+    /*public static Ingredient recipeDetail(long recipeId) {
         Ingredient ingredient = new Ingredient();
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
@@ -100,14 +100,10 @@ public class IngredientRepo {
                 " WHERE m." + Recipe.KEY_TYPE + " = 1" +
                 " AND i." + Ingredient.KEY_INGREDIENT_ID + " = m." + Recipe.KEY_MATERIAL_ID + ";" +
                 " AND m." + Recipe.KEY_RECIPE_ID + " = '" + recipeId + "';";
-//        "SELECT i.name, m.amount, m.unit
-//        FROM ingredients i, recipe_materials m
-//        WHERE m.type = 1 //type 1 is ingredients
-//        AND i.ingredients_id = m.material_id
-//        AND m.recipe_id = recipeId
 
         return ingredient;
     }
+
     public static Ingredient recipeNutrition(long recipeId) {
         Ingredient ingredient = new Ingredient();
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
@@ -120,13 +116,8 @@ public class IngredientRepo {
                 " WHERE m." + Recipe.KEY_TYPE + " = 1" +
                 " AND i." + Ingredient.KEY_INGREDIENT_ID + " = m." + Recipe.KEY_MATERIAL_ID + ";" +
                 " AND m." + Recipe.KEY_RECIPE_ID + " = '" + recipeId + "';";
-//        "SELECT SUM(i.calorie * m.amount), SUM(i.protein * m.amount), SUM(i.carbohydrate * m.amount), SUM(i.fat * m.amount)
-//        FROM ingredients i, recipe_materials m
-//        WHERE m.type = //  type 1 is ingredients
-//        AND i.ingredients_id = m.material_id
-//        AND m.recipe_id = recipeId
 
         return ingredient;
-    }
+    }*/
 
 }

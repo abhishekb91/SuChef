@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.mis571_group_d.suchef.R;
 import com.mis571_group_d.suchef.activity.SearchResultActivity;
 import com.mis571_group_d.suchef.adapter.IngredientAdapter;
 import com.mis571_group_d.suchef.adapter.UtensilAdapter;
+import com.mis571_group_d.suchef.data.model.Ingredient;
 import com.mis571_group_d.suchef.data.repo.IngredientRepo;
 import com.mis571_group_d.suchef.data.repo.UtensilsRepo;
 
@@ -56,13 +58,13 @@ public class MixNMatchFragment extends Fragment {
         IngredientRepo ingRepo = new IngredientRepo();
 
         //Getting list of all ingredients
-        ArrayList ingredients = ingRepo.getIngredients();
+        final ArrayList<Ingredient> ingredients = ingRepo.getIngredients();
 
         //Initializing Ingredients ArrayList
         mSelectedIngredients = new ArrayList<>();
 
         //Passing ingredient values to IngredientAdapter
-        IngredientAdapter ingredientAdapter = new IngredientAdapter(getActivity(), ingredients);
+        final IngredientAdapter ingredientAdapter = new IngredientAdapter(getActivity(), ingredients);
         final GridView gridView = (GridView) view.findViewById(R.id.ingredient_grid);
 
         gridView.setSelector(R.drawable.item_selector);
@@ -82,15 +84,12 @@ public class MixNMatchFragment extends Fragment {
                     //If ingredient is selected, remove it from ArrayList
                     mSelectedIngredients.remove(mSelectedIngredients.indexOf(id));
 
-                    view.setBackgroundColor(Color.TRANSPARENT);
-                    //gridView.setItemChecked(position, true);
                 } else {
                     //If ingredient is not selected, add it to ArrayList
                     mSelectedIngredients.add(id);
-
-                    //gridView.setItemChecked(position, false);
-                    view.setBackgroundColor(Color.YELLOW);
                 }
+                ingredients.get(position).setSelected(!isSelected);
+                ingredientAdapter.notifyDataSetChanged();
             }
         });
 

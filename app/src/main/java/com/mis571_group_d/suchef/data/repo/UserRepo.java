@@ -98,4 +98,40 @@ public class UserRepo {
         cursor.close();
         return userId;
     }
+
+    public int updatePassword(User user, String currentPassword) {
+
+        int status = 0;
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+
+        String query = "SELECT * FROM users " +
+                " WHERE user_id=" + user.getId() + "" +
+                " AND password='" + currentPassword + "';";
+
+        Log.d(TAG, query);
+        Cursor cursor = db.rawQuery(query, null);
+
+        try {
+            if (cursor.getCount() == 1) {
+
+                String updateQuery = " UPDATE `users` " +
+                        " SET `password`= '" + user.getPassword() + "'" +
+                        " WHERE `user_id`='" + user.getId() + "';";
+
+                db.execSQL(updateQuery);
+
+                status = 1;
+            } else {
+                status = 2;
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while getting user information");
+        } finally {
+            cursor.close();
+            DatabaseManager.getInstance().closeDatabase();
+        }
+
+        return status;
+    }
 }
