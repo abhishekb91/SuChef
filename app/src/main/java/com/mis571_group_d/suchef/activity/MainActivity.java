@@ -4,8 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -17,8 +15,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.mis571_group_d.suchef.data.repo.SampleData;
 import com.mis571_group_d.suchef.fragment.FavouriteFragment;
@@ -27,27 +23,25 @@ import com.mis571_group_d.suchef.data.SessionManager;
 import com.mis571_group_d.suchef.fragment.HomeFragment;
 import com.mis571_group_d.suchef.fragment.MixNMatchFragment;
 import com.mis571_group_d.suchef.fragment.SettingsFragment;
-import com.mis571_group_d.suchef.fragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
-    private static final String TAG_FAVOURITES = "photos";
-    private static final String TAG_MIXNMATCH = "movies";
-    private static final String TAG_PROFILE = "notifications";
+    private static final String TAG_FAVOURITES = "favourites";
+    private static final String TAG_MIXNMATCH = "mix_n_match";
+    private static final String TAG_PROFILE = "settings";
+
     // index to identify current nav menu item
     public static int navItemIndex = 0;
     public static String CURRENT_TAG = TAG_HOME;
+
     // Session Manager Class
     SessionManager session;
     private NavigationView navigationView;
     private DrawerLayout drawer;
-    private View navHeader;
-    private ImageView imgNavHeaderBg, imgProfile;
-    private TextView txtName, txtWebsite;
     private Toolbar toolbar;
-    private FloatingActionButton fab;
+
     // toolbar titles respected to selected nav menu item
     private String[] activityTitles;
 
@@ -313,6 +307,10 @@ public class MainActivity extends AppCompatActivity {
                 loadHomeFragment();
                 return;
             }
+        }
+
+        if(CURRENT_TAG == "") {
+            Log.d("favourite", "again");
         }
 
         super.onBackPressed();

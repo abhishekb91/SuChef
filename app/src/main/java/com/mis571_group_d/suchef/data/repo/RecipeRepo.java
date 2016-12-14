@@ -44,9 +44,9 @@ public class RecipeRepo {
 
         String query = "CREATE TABLE `" + Recipe.TABLE + "` (" +
                 "`" + Recipe.KEY_RECIPE_ID + "` INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "`" + Recipe.KEY_NAME + "` VARCHAR(50)," +
+                "`" + Recipe.KEY_NAME + "` VARCHAR(25)," +
                 "`" + Recipe.KEY_CUSINE_ID + "` INTEGER," +
-                "`" + Recipe.KEY_IMAGE + "` TEXT," +
+                "`" + Recipe.KEY_IMAGE + "` VARCHAR(20)," +
                 "`" + Recipe.KEY_PREPARATION_METHOD + "` TEXT," +
                 "`" + Recipe.KEY_IS_DELETE + "` INT(1) DEFAULT 0 );";
 

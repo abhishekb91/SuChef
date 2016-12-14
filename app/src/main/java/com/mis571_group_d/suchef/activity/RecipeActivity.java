@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,15 @@ public class RecipeActivity extends AppCompatActivity {
         final RecipeRepo recipeRepo = new RecipeRepo();
 
         final Recipe recipe = recipeRepo.recipeDetail(recipeId);
+
+        //Getting Recipe Main Image
+        ImageView recipeImage = (ImageView) findViewById(R.id.recipe_coverImage);
+
+        //Getting image's resource id
+        int resourceId = getResources().getIdentifier("drawable/"+ recipe.getRecipeImage(), null, getPackageName());
+
+        //Setting recipe image
+        recipeImage.setImageResource(resourceId);
 
         //Getting Recipe Ingredients in a String
         String recipeIngredents = "";
