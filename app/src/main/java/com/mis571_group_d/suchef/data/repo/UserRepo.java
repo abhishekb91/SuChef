@@ -8,6 +8,8 @@ import android.util.Log;
 import com.mis571_group_d.suchef.data.DatabaseManager;
 import com.mis571_group_d.suchef.data.model.User;
 
+import static android.R.attr.id;
+
 /**
  * Created by abhishek on 11/29/2016.
  */
@@ -99,6 +101,13 @@ public class UserRepo {
         return userId;
     }
 
+    /**
+     * This function is used to update the user's password
+     *
+     * @param user
+     * @param currentPassword
+     * @return
+     */
     public int updatePassword(User user, String currentPassword) {
 
         int status = 0;
@@ -133,5 +142,67 @@ public class UserRepo {
         }
 
         return status;
+    }
+
+    /**
+     * This function is used for getting user profile details
+     *
+     * @param userId is the User Id
+     * @return User object
+     */
+    public User userProfile(long userId){
+
+        User user = new User();
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String selectQuery = " SELECT u.* " +
+                " FROM " + User.TABLE + " as u" +
+                " WHERE u." + User.KEY_USERID + " = '" + userId + "';";
+
+        Log.d(TAG, selectQuery);
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    //Setting up user's date of birth
+                    user.setDob(cursor.getString(cursor.getColumnIndex(User.KEY_DOB)));
+
+                    //Setting up user's gender
+                    user.setGender(cursor.getInt(cursor.getColumnIndex(User.KEY_GENDER)));
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Error while getting user information");
+        } finally {
+            cursor.close();
+            DatabaseManager.getInstance().closeDatabase();
+        }
+
+        cursor.close();
+
+        return user;
+    }
+    /**
+     * This function is used to update the user's profile
+     *
+     * @param user
+     * @return
+     */
+    public int updateProfile(User user) {
+
+        long userId = -1;
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        //Creating ContentValue
+        ContentValues cv = new ContentValues();
+
+        cv.put("date_of_birth",user.getDob());
+        cv.put("gender",user.getGender());
+
+        int noOfRows = db.update("users", cv, "user_id="+user.getId(), null);
+
+        return noOfRows;
     }
 }

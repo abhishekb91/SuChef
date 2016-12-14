@@ -31,6 +31,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"></DatePicker>
 
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="355dp"
@@ -65,12 +66,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/update_btn" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
 
     </LinearLayout>
 </ScrollView>
