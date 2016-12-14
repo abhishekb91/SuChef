@@ -50,6 +50,12 @@ public class RecipeActivity extends AppCompatActivity {
         //Getting Recipe Ingredients in a String
         String recipeIngredents = "";
 
+        //Referencing the Recipe Name
+        TextView recipe_name = (TextView) findViewById(R.id.recipe_name);
+
+        //Setting Recipe Name
+        recipe_name.setText(recipe.getRecipeName());
+
         for (int i = 0; i < recipe.getRecipeIngredients().size(); i++) {
             Ingredient tempIng = (Ingredient) recipe.getRecipeIngredients().get(i);
 

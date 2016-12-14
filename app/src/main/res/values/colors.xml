@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#7B1FA2</color>
     <color name="colorAccent">#FF5252</color>
     <color name="colorRecipeHeading">#388E3C</color>
+    <color name="colorSetting">#EFEBE9</color>
 </resources>

@@ -309,11 +309,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(CURRENT_TAG == "") {
-            Log.d("favourite", "again");
-        }
-
         super.onBackPressed();
-
     }
 }

@@ -4,6 +4,7 @@ package com.mis571_group_d.suchef.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,16 +26,15 @@ import java.util.ArrayList;
  */
 public class FavouriteFragment extends Fragment {
 
+    private View mView;
+
     public FavouriteFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_favourite, container, false);
+    public void onResume() {
+        super.onResume();
 
         SessionManager sessionManager = new SessionManager(getActivity());
         //Create User object
@@ -50,7 +50,7 @@ public class FavouriteFragment extends Fragment {
         ArrayList recipes = favRepo.getUserFavourites(user);
 
         RecipeAdapter recipeAdapter = new RecipeAdapter(getActivity(), recipes);
-        ListView listView = (ListView) view.findViewById(R.id.user_favourite);
+        ListView listView = (ListView) mView.findViewById(R.id.user_favourite);
 
         //Assigning the adaptor to the list view
         listView.setAdapter(recipeAdapter);
@@ -65,7 +65,16 @@ public class FavouriteFragment extends Fragment {
             }
         });
 
-        return view;
+        Log.e("Favourite", "On Resume");
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        mView = inflater.inflate(R.layout.fragment_favourite, container, false);
+
+        return mView;
     }
 
 }
