@@ -46,11 +46,15 @@ public class Ingredient {
     /**
      * Constructor
      */
-    public Ingredient(long id, String ingredientName, float amount, String unit) {
+    public Ingredient(long id, String ingredientName, float amount, String unit, float calorie, float protein, float carbohydrate, float fat) {
         mId = id;
         mIngredientsName = ingredientName;
         mAmount = amount;
         mUnit = unit;
+        mCalorie = calorie;
+        mProtein = protein;
+        mFat = fat;
+        mCarbohydrate = carbohydrate;
     }
 
     public Ingredient(long id, String ingredientName, String ingredientImage) {

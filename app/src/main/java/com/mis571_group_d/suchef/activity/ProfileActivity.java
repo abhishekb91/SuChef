@@ -23,6 +23,8 @@ import com.mis571_group_d.suchef.data.repo.UserRepo;
 import java.lang.reflect.Array;
 import java.util.Date;
 
+import static com.mis571_group_d.suchef.R.string.date;
+
 public class ProfileActivity extends AppCompatActivity {
 
     private Button mUpdateButton;
@@ -118,12 +120,13 @@ public class ProfileActivity extends AppCompatActivity {
         //Getting user's profile information
         User userProfile = userRepo.userProfile(userId);
 
-        //Splitting DOB into array
-        String[] date = userProfile.getDob().split("-");
+        if(userProfile.getDob() != null) {
+            //Splitting DOB into array
+            String[] date = userProfile.getDob().split("-");
 
-        //Updating the datepicker
-        mDatepicker.updateDate(Integer.parseInt(date[0]), (Integer.parseInt(date[1]) - 1 ), Integer.parseInt(date[2]));
-
+            //Updating the datepicker
+            mDatepicker.updateDate(Integer.parseInt(date[0]), (Integer.parseInt(date[1]) - 1), Integer.parseInt(date[2]));
+        }
         //Setting up Gender radio button
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioSex);
 

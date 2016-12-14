@@ -89,7 +89,7 @@ public class RecipeRepo {
         ArrayList utensils = new ArrayList();
 
         String query = "SELECT r.recipe_id, r.name as recipe_name, r.image as recipe_image, r.preparation_method as preparation_method," +
-                " rm.material_id, rm.amount, rm.unit, rm.type, i.ingredient_id, i.name as ingredient_name, " +
+                " rm.material_id, rm.amount, rm.unit, rm.type, i.ingredient_id, i.name as ingredient_name, i.calorie, i.protein, i.carbohydrate, i.fat, " +
                 " u.utensil_id, u.name as utensil_name" +
                 " FROM `recipes` as r " +
                 " JOIN 'recipe_materials' as rm on rm.recipe_id = r.recipe_id " +
@@ -124,7 +124,12 @@ public class RecipeRepo {
                                 cursor.getLong(cursor.getColumnIndex("ingredient_id")),
                                 cursor.getString(cursor.getColumnIndex("ingredient_name")),
                                 cursor.getFloat(cursor.getColumnIndex("amount")),
-                                cursor.getString(cursor.getColumnIndex("unit"))
+                                cursor.getString(cursor.getColumnIndex("unit")),
+                                cursor.getFloat(cursor.getColumnIndex("calorie")),
+                                cursor.getFloat(cursor.getColumnIndex("protein")),
+                                cursor.getFloat(cursor.getColumnIndex("carbohydrate")),
+                                cursor.getFloat(cursor.getColumnIndex("fat"))
+
                         ));
                     } else {
                         utensils.add(new Utensil(

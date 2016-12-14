@@ -56,11 +56,32 @@ public class RecipeActivity extends AppCompatActivity {
         //Setting Recipe Name
         recipe_name.setText(recipe.getRecipeName());
 
+        //Declaring Ingredient values
+        float calories = 0;
+        float fats = 0;
+        float carbohydrates = 0;
+        float protein = 0;
+
         for (int i = 0; i < recipe.getRecipeIngredients().size(); i++) {
+
             Ingredient tempIng = (Ingredient) recipe.getRecipeIngredients().get(i);
+
+            calories += tempIng.getCalorie();
+            fats+= tempIng.getFat();
+            carbohydrates+= tempIng.getCarbohydrate();
+            protein+= tempIng.getProtien();
 
             recipeIngredents += (i+1) + ") " + ((int) tempIng.getAmount()) + " " + tempIng.getUnit() + " of " + tempIng.getIngredientName() + "\n";
         }
+
+        //Referencing Text view
+        TextView nutritionTextView = (TextView) findViewById(R.id.recipe_nutrients);
+
+        //Setting Nutrition Value
+        String nutritionInfo = "Total Protein : " + protein + " mg\nTotal Carbohydrates : " + carbohydrates + " mg\nTotal Calories : " + calories + " mg\nTotal fats : " + fats + " mg";
+
+        //Setting Nutrition Value
+        nutritionTextView.setText(nutritionInfo);
 
         //Setting Ingredients in the TextView
         ingredientsTextView = (TextView) findViewById(R.id.recipe_ingredients);

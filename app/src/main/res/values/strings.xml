@@ -69,6 +69,7 @@
     <!-- Strings related to Recipe Detail -->
     <string name="ingredients">Ingredients</string>
     <string name="utensils">Utensils</string>
+    <string name="nutrition_value">Nutrition Value</string>
     <string name="methods">Preparation Methods</string>
 
     <!-- Strings related to Search Page-->

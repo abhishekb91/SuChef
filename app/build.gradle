@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.mis571_group_d.suchef"
-        minSdkVersion 22
+        minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
